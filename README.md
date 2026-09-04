@@ -129,7 +129,7 @@ rebuild or config swap needed when you move hosts.
 `.github/workflows/deploy.yml` builds and publishes on every push to `main`.
 Pages must be set to **Source: GitHub Actions** (Settings → Pages) once.
 
-→ **https://fathy20.github.io/babr/**
+→ **https://abdallared.github.io/babr-main/**
 
 ### babar.ly (the real home)
 
