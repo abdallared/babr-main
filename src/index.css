@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── BABBR brand palette (sampled from official brand assets) ── */
+  --color-babbr:        #FC3B00;
+  --color-babbr-dark:   #C42D00;
+  --color-babbr-glow:   #FF6A38;
+  --color-ink:          #0A0A0A;
+  --color-ink-soft:     #141414;
+  --color-ink-line:     #232323;
+  --color-sand:         #CEBB9F;
+  --color-periwinkle:   #758BFD;
+  --color-blush:        #FFCAD4;
+  --color-indigo:       #27187E;
+  --color-lime:         #E9FF70;
+  --color-teal:         #2EC4B6;
+  --color-grass:        #7CB518;
+  --color-stone:        #A8A29B;
+
+  --font-display: "Poppins", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-sans:    "IBM Plex Sans Arabic", "Poppins", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * { border-color: var(--color-ink-line); }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    /* Clipped at the root as well as on body: the fixed decorative layers
+       (grain, cursor glow) would otherwise widen the document in RTL. */
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--color-babbr); color: #fff; }
+
+  /* Latin display type should never render in the Arabic face */
+  .font-display { font-family: var(--font-display); }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-ink); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-line);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-babbr); }
+}
+
+@layer utilities {
+  /* Film grain — sits above everything, ignores pointer events */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain-shift 0.6s steps(2) infinite;
+  }
+
+  @keyframes grain-shift {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(-2%, 1.5%); }
+    100% { transform: translate(1%, -1%); }
+  }
+
+  .noise-panel {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
+    color: transparent;
+  }
+
+  .text-stroke-brand {
+    -webkit-text-stroke: 1.5px var(--color-babbr);
+    color: transparent;
+  }
+
+  /* Angular corner cut echoing the logo's sheared geometry */
+  .clip-shear {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+  }
+
+  .clip-shear-lg {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 42px), calc(100% - 42px) 100%, 0 100%);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .grain::after { animation: none; }
+}
