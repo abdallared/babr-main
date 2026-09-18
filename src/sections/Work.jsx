@@ -8,32 +8,71 @@ import { BabbrMark } from '../components/BabbrMark'
 import { Marquee } from '../components/Marquee'
 import { CONTACT } from '../lib/brand'
 
+// ── Client Logos (28 Enterprise Clients) ──
+import eetilafLogo from '../assets/clients/eetilaf.png'
+import hassanAllamLogo from '../assets/clients/hassan-allam.png'
+import orascomLogo from '../assets/clients/orascom.png'
+import rowadLogo from '../assets/clients/rowad.png'
+import elsewedyLogo from '../assets/clients/elsewedy.png'
+import twosiLogo from '../assets/clients/twosi.png'
+import dhlLogo from '../assets/clients/dhl.png'
+import gizLogo from '../assets/clients/giz.png'
+import libyaSecurityLogo from '../assets/clients/libya-security.png'
+import almotawassetLogo from '../assets/clients/almotawasset.png'
+import alateedLogo from '../assets/clients/alateed.png'
+import alkhalejLogo from '../assets/clients/alkhalej.png'
+import oilCoLogo from '../assets/clients/oil-co.png'
+import sehaLogo from '../assets/clients/seha.png'
+import toyotaLogo from '../assets/clients/toyota.png'
+
+import blabanLogo from '../assets/clients/blaban.png'
+import espressolabLogo from '../assets/clients/espressolab.png'
+import enzaHomeLogo from '../assets/clients/enza-home.png'
+import almangoshLogo from '../assets/clients/almangosh.png'
+import jadedalumaLogo from '../assets/clients/jadedaluma.png'
+import hyundaiLogo from '../assets/clients/hyundai.png'
+import heroGymLogo from '../assets/clients/hero-gym.png'
+import tmdLogo from '../assets/clients/tmd.png'
+import batterseaLogo from '../assets/clients/battersea.png'
+import tamkeenLogo from '../assets/clients/tamkeen.png'
+import alsalwiLogo from '../assets/clients/alsalwi.png'
+import riyadaLogo from '../assets/clients/riyada.png'
+import altataworLogo from '../assets/clients/altatawor.png'
+import brLogo from '../assets/clients/br.png'
+
 const CLIENTS_ROW_1 = [
-  { name: 'حسن علام القابضة', en: 'Hassan Allam Holding', cat: 'مقاولات وبنية تحتية' },
-  { name: 'أوراسكوم للإنشاءات', en: 'Orascom Construction', cat: 'إنشاءات دولية' },
-  { name: 'السويدي إليكتريك', en: 'Elsewedy Electric', cat: 'طاقة وبنية تحتية' },
-  { name: 'رواد الهندسة الحديثة', en: 'Rowad Modern Engineering', cat: 'هندسة ومقاولات' },
-  { name: 'ائتلاف الشركات المصرية', en: 'EETILAF Consortium', cat: 'تحالف مشاريع كبرى' },
-  { name: 'DHL العالمية', en: 'DHL International', cat: 'شحن ولوجستيات' },
-  { name: 'الوكالة الألمانية (GIZ)', en: 'GIZ German Cooperation', cat: 'تنمية وتعاون دولي' },
-  { name: 'مؤتمر أمن ليبيا القومي', en: 'Libya National Security', cat: 'مؤتمرات سيادية' },
-  { name: 'مجموعة الإشادة القابضة', en: 'Eshada Holding Group', cat: 'استثمار وتجارة' },
+  { name: 'ائتلاف الشركات المصرية', en: 'EETILAF Consortium', logo: eetilafLogo },
+  { name: 'حسن علام القابضة', en: 'Hassan Allam Holding', logo: hassanAllamLogo },
+  { name: 'أوراسكوم للإنشاءات', en: 'Orascom Construction', logo: orascomLogo },
+  { name: 'رواد الهندسة الحديثة', en: 'Rowad Modern Engineering', logo: rowadLogo },
+  { name: 'السويدي إليكتريك', en: 'Elsewedy Electric', logo: elsewedyLogo },
+  { name: 'شركة 2i للحلول', en: '2i Solutions', logo: twosiLogo },
+  { name: 'DHL العالمية', en: 'DHL International', logo: dhlLogo },
+  { name: 'الوكالة الألمانية (GIZ)', en: 'GIZ German Cooperation', logo: gizLogo },
+  { name: 'المؤتمر الوطني لأمن وتنمية المعلومات', en: 'Libya Security Conference', logo: libyaSecurityLogo },
+  { name: 'مصرف المتوسط', en: 'The Middle East Bank', logo: almotawassetLogo },
+  { name: 'شركة أبوظبي العتيد الدولية', en: 'Al Ateed International', logo: alateedLogo },
+  { name: 'شركة الخليج للصرافة', en: 'Alkhalej Exchange', logo: alkhalejLogo },
+  { name: 'الشركة الوطنية للنفط', en: 'National Oil Company', logo: oilCoLogo },
+  { name: 'أبوظبي للخدمات الصحية', en: 'Abu Dhabi Health Services', logo: sehaLogo },
+  { name: 'تويوتا', en: 'TOYOTA', logo: toyotaLogo },
 ]
 
 const CLIENTS_ROW_2 = [
-  { name: 'بـ لبن', en: 'B.Laban', cat: 'أغذية وحلويات' },
-  { name: 'إكسبريسو لاب', en: 'Espressolab', cat: 'سلسلة كافيهات عالمية' },
-  { name: 'إنزا هوم', en: 'Enza Home', cat: 'أثاث وتصميم داخلي' },
-  { name: 'حديد الأمة', en: 'JadedAluma Trucks', cat: 'نقل وشاحنات وصناعة' },
-  { name: 'شركة المانقوش للسيارات', en: 'Almangosh Motors', cat: 'سيارات وتجارة' },
-  { name: 'شركة المتوسط', en: 'Al Motawasset Co.', cat: 'تجارة عامة وخدمات' },
-  { name: 'شركة العتيد الدولية', en: 'Al Ateed International', cat: 'استيراد وتصدير' },
-  { name: 'شركة التطور للهناجر', en: 'Al Tatawor Structures', cat: 'صناعة وهياكل حديدية' },
-  { name: 'حلويات السلوي', en: 'Al Salwi Sweets', cat: 'صناعات غذائية' },
-  { name: 'مركز الريادة والابتكار', en: 'Riyada Innovation Center', cat: 'تدريب وريادة أعمال' },
-  { name: 'The Meat Dealer (TMD)', en: 'TMD Foods', cat: 'مطاعم وضيافة' },
-  { name: 'Hero Gym', en: 'Hero Gym', cat: 'لياقة ورياضة' },
-  { name: 'أكاديمية تمكين الدولية', en: 'Tamkeen Academy', cat: 'تعليم وتدريب دولي' },
+  { name: 'بـ لبن', en: 'B.Laban', logo: blabanLogo },
+  { name: 'إكسبريسو لاب', en: 'Espressolab', logo: espressolabLogo },
+  { name: 'إنزا هوم', en: 'Enza Home', logo: enzaHomeLogo },
+  { name: 'شركة المانقوش للسيارات', en: 'Almangosh Motors', logo: almangoshLogo },
+  { name: 'جديد الأمة', en: 'JadedAluma', logo: jadedalumaLogo },
+  { name: 'هيونداي للشاحنات والحافلات', en: 'HYUNDAI Truck & Bus', logo: hyundaiLogo },
+  { name: 'هيرو جيم', en: 'Hero Gym', logo: heroGymLogo },
+  { name: 'The Meat Dealer (TMD)', en: 'TMD Foods', logo: tmdLogo },
+  { name: 'باترسي للخدمات العقارية', en: 'Battersea Real Estate', logo: batterseaLogo },
+  { name: 'أكاديمية تمكين الدولية (T.I.A)', en: 'Tamkeen International Academy', logo: tamkeenLogo },
+  { name: 'حلويات السلوي', en: 'Al Salwi Sweets', logo: alsalwiLogo },
+  { name: 'مركز الريادة والابتكار', en: 'Riyada Innovation Center', logo: riyadaLogo },
+  { name: 'شركة التطور لصناعة الهناجر', en: 'Al Tatawor Structures', logo: altataworLogo },
+  { name: 'مجموعة BR الدولية', en: 'BR Group', logo: brLogo },
 ]
 
 const WORK = [
@@ -129,33 +168,37 @@ export function Work() {
         </div>
 
         {/* ── Enterprise Clients Marquee Tracks ── */}
-        <div className="mb-16 space-y-3.5 overflow-hidden border-y border-ink-line bg-ink/40 py-6">
-          <Marquee speed={48} repeat={3}>
+        <div className="mb-16 space-y-4 overflow-hidden border-y border-ink-line bg-ink/40 py-6">
+          <Marquee speed={48} repeat={2}>
             {CLIENTS_ROW_1.map((c, i) => (
               <div
                 key={i}
-                className="mx-2 flex items-center gap-3.5 border border-ink-line bg-ink-soft/80 px-5 py-3 transition-colors hover:border-babbr/40"
+                title={`${c.name} (${c.en})`}
+                className="group clip-shear mx-2 flex h-20 w-44 sm:h-22 sm:w-52 shrink-0 items-center justify-center border border-white/20 bg-white p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-babbr hover:shadow-[0_10px_25px_rgba(252,59,0,0.25)]"
               >
-                <div className="size-2 bg-babbr" />
-                <div>
-                  <p className="text-sm font-bold text-white leading-tight">{c.name}</p>
-                  <p className="text-[10px] font-mono text-white/40 uppercase mt-0.5">{c.en}</p>
-                </div>
+                <img
+                  src={c.logo}
+                  alt={c.name}
+                  className="max-h-12 sm:max-h-14 w-auto max-w-[86%] object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
             ))}
           </Marquee>
 
-          <Marquee speed={44} reverse repeat={3}>
+          <Marquee speed={44} reverse repeat={2}>
             {CLIENTS_ROW_2.map((c, i) => (
               <div
                 key={i}
-                className="mx-2 flex items-center gap-3.5 border border-ink-line bg-ink-soft/80 px-5 py-3 transition-colors hover:border-babbr/40"
+                title={`${c.name} (${c.en})`}
+                className="group clip-shear mx-2 flex h-20 w-44 sm:h-22 sm:w-52 shrink-0 items-center justify-center border border-white/20 bg-white p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-babbr hover:shadow-[0_10px_25px_rgba(252,59,0,0.25)]"
               >
-                <div className="size-2 bg-[#2EC4B6]" />
-                <div>
-                  <p className="text-sm font-bold text-white leading-tight">{c.name}</p>
-                  <p className="text-[10px] font-mono text-white/40 uppercase mt-0.5">{c.en}</p>
-                </div>
+                <img
+                  src={c.logo}
+                  alt={c.name}
+                  className="max-h-12 sm:max-h-14 w-auto max-w-[86%] object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
             ))}
           </Marquee>
