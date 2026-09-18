@@ -46,8 +46,8 @@ export function About() {
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="من نحن"
-              title="بابر — مستقبل الدعاية"
-              lead="بدينا بفكرة بسيطة: الدعاية في ليبيا تستحق مستوى أعلى. علامة تجارية قوية ما هي زخرفة — هي أداة تبيع، وتبني ثقة، وتخلّي الناس تتذكرك."
+              title="ببر — ريادة الدعاية والإعلان"
+              lead="انطلقت شركة ببر في 5 مايو 2022 كشركة ليبية متخصصة في تقديم الخدمات التسويقية، الطباعة، الدعاية والإعلان، التصوير الثابت والمتحرك، وتطوير المواقع والمنظومات."
             />
 
             <Reveal delay={0.15}>
@@ -57,19 +57,44 @@ export function About() {
                   color="#FC3B00"
                   style={{ insetInlineEnd: '-2rem' }}
                 />
-                <p className="relative text-pretty text-lg leading-relaxed text-white/70">
-                  إحنا فريق مصمّمين وصنّاع محتوى ومنفّذين، نشتغل مع أصحاب المشاريع
-                  الصغيرة والشركات على حد سواء.
-                  <span className="text-white"> هدفنا نخلّي علامتك تبان أقوى من حجمها.</span>
-                </p>
-                <div className="relative mt-7 flex items-center gap-3 border-t border-ink-line pt-6">
-                  <BabbrMark className="h-6 w-auto" color="#FC3B00" />
-                  <div>
-                    <p dir="ltr" className="font-display text-sm font-bold">Babbr Creatives™</p>
-                    <p dir="ltr" className="font-display text-[10px] tracking-[0.2em] text-white/40 uppercase">
-                      Tripoli · Libya
+                
+                {/* ── Triad: Vision, Mission, Objective ── */}
+                <div className="relative space-y-4">
+                  <div className="border-r-2 border-babbr pr-4">
+                    <p className="font-display text-xs font-bold text-babbr tracking-wider uppercase mb-1">الرؤية</p>
+                    <p className="text-sm leading-relaxed text-white/80">
+                      نسعى نحو سوق تنافسية بأرقى وأجود الخدمات وبطريقة تواكب التطور التجاري والصناعي والخدمي.
                     </p>
                   </div>
+
+                  <div className="border-r-2 border-white/20 pr-4">
+                    <p className="font-display text-xs font-bold text-white/60 tracking-wider uppercase mb-1">الرسالة</p>
+                    <p className="text-sm leading-relaxed text-white/70">
+                      دعم العميل وتقديمه في أفضل صورة أمام جمهوره لبناء ثقة مستدامة.
+                    </p>
+                  </div>
+
+                  <div className="border-r-2 border-white/20 pr-4">
+                    <p className="font-display text-xs font-bold text-white/60 tracking-wider uppercase mb-1">الهدف</p>
+                    <p className="text-sm leading-relaxed text-white/70">
+                      طرح خدماتنا المتكاملة في الأسواق الليبية بمعايير احترافية تعزز ريادة علامات عملائنا.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative mt-7 flex items-center justify-between border-t border-ink-line pt-6">
+                  <div className="flex items-center gap-3">
+                    <BabbrMark className="h-6 w-auto" color="#FC3B00" />
+                    <div>
+                      <p dir="ltr" className="font-display text-sm font-bold">Babbr Marketing & Advertising</p>
+                      <p dir="ltr" className="font-display text-[10px] tracking-[0.2em] text-white/40 uppercase">
+                        Est. May 2022 · Tripoli, Libya
+                      </p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-[11px] text-babbr bg-babbr/10 border border-babbr/30 px-2.5 py-1">
+                    منذ 2022
+                  </span>
                 </div>
               </div>
             </Reveal>

@@ -1,27 +1,48 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { ArrowUpLeft } from 'lucide-react'
+import { ArrowUpLeft, ShieldCheck, Star } from 'lucide-react'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
 import { TiltCard } from '../components/Interactive'
 import { BabbrMark } from '../components/BabbrMark'
+import { Marquee } from '../components/Marquee'
 import { CONTACT } from '../lib/brand'
 
-/**
- * PLACEHOLDER CASE STUDIES.
- *
- * These tiles are rendered from the brand colourways rather than photography so
- * the section looks finished before real work is loaded in. To use real work,
- * drop images into /public/work and give each entry an `image` path — the tile
- * renders the image instead of the generated colourway panel.
- */
+const CLIENTS_ROW_1 = [
+  { name: 'حسن علام القابضة', en: 'Hassan Allam Holding', cat: 'مقاولات وبنية تحتية' },
+  { name: 'أوراسكوم للإنشاءات', en: 'Orascom Construction', cat: 'إنشاءات دولية' },
+  { name: 'السويدي إليكتريك', en: 'Elsewedy Electric', cat: 'طاقة وبنية تحتية' },
+  { name: 'رواد الهندسة الحديثة', en: 'Rowad Modern Engineering', cat: 'هندسة ومقاولات' },
+  { name: 'ائتلاف الشركات المصرية', en: 'EETILAF Consortium', cat: 'تحالف مشاريع كبرى' },
+  { name: 'DHL العالمية', en: 'DHL International', cat: 'شحن ولوجستيات' },
+  { name: 'الوكالة الألمانية (GIZ)', en: 'GIZ German Cooperation', cat: 'تنمية وتعاون دولي' },
+  { name: 'مؤتمر أمن ليبيا القومي', en: 'Libya National Security', cat: 'مؤتمرات سيادية' },
+  { name: 'مجموعة الإشادة القابضة', en: 'Eshada Holding Group', cat: 'استثمار وتجارة' },
+]
+
+const CLIENTS_ROW_2 = [
+  { name: 'بـ لبن', en: 'B.Laban', cat: 'أغذية وحلويات' },
+  { name: 'إكسبريسو لاب', en: 'Espressolab', cat: 'سلسلة كافيهات عالمية' },
+  { name: 'إنزا هوم', en: 'Enza Home', cat: 'أثاث وتصميم داخلي' },
+  { name: 'حديد الأمة', en: 'JadedAluma Trucks', cat: 'نقل وشاحنات وصناعة' },
+  { name: 'شركة المانقوش للسيارات', en: 'Almangosh Motors', cat: 'سيارات وتجارة' },
+  { name: 'شركة المتوسط', en: 'Al Motawasset Co.', cat: 'تجارة عامة وخدمات' },
+  { name: 'شركة العتيد الدولية', en: 'Al Ateed International', cat: 'استيراد وتصدير' },
+  { name: 'شركة التطور للهناجر', en: 'Al Tatawor Structures', cat: 'صناعة وهياكل حديدية' },
+  { name: 'حلويات السلوي', en: 'Al Salwi Sweets', cat: 'صناعات غذائية' },
+  { name: 'مركز الريادة والابتكار', en: 'Riyada Innovation Center', cat: 'تدريب وريادة أعمال' },
+  { name: 'The Meat Dealer (TMD)', en: 'TMD Foods', cat: 'مطاعم وضيافة' },
+  { name: 'Hero Gym', en: 'Hero Gym', cat: 'لياقة ورياضة' },
+  { name: 'أكاديمية تمكين الدولية', en: 'Tamkeen Academy', cat: 'تعليم وتدريب دولي' },
+]
+
 const WORK = [
-  { title: 'مطعم و كافي', cat: 'هوية بصرية + مطبوعات', year: '2025', bg: '#FC3B00', fg: '#FFFFFF', span: 'lg:col-span-7' },
-  { title: 'شركة مقاولات', cat: 'هوية + لوحات خارجية', year: '2025', bg: '#27187E', fg: '#E9FF70', span: 'lg:col-span-5' },
-  { title: 'متجر إلكتروني', cat: 'موقع + حملة إعلانية', year: '2024', bg: '#2EC4B6', fg: '#FFCAD4', span: 'lg:col-span-5' },
-  { title: 'عيادة أسنان', cat: 'سوشيال ميديا + موشن', year: '2024', bg: '#FFCAD4', fg: '#758BFD', span: 'lg:col-span-7' },
-  { title: 'ماركة ملابس', cat: 'هوية + تغليف + ميرش', year: '2024', bg: '#E9FF70', fg: '#7CB518', span: 'lg:col-span-6' },
-  { title: 'شركة توصيل', cat: 'ريبراندنج شامل', year: '2023', bg: '#0A0A0A', fg: '#CEBB9F', span: 'lg:col-span-6' },
+  { title: 'تحالفات وشركات المقاولات', cat: 'أجنحة معارض + مطبوعات + لافتات كبرى', year: '2024-2025', bg: '#FC3B00', fg: '#FFFFFF', span: 'lg:col-span-7' },
+  { title: 'شركات الطاقة والإنشاءات', cat: 'هويات + تغطيات سينمائية + بيلبورد', year: '2024-2025', bg: '#27187E', fg: '#E9FF70', span: 'lg:col-span-5' },
+  { title: 'سلاسل الكافيهات والأغذية', cat: 'حملات إعلانية + سوشيال + موشن', year: '2024', bg: '#2EC4B6', fg: '#FFCAD4', span: 'lg:col-span-5' },
+  { title: 'المنظمات والمؤتمرات السيادية', cat: 'تنظيم فعاليات + استوديوهات + تشريفات', year: '2024', bg: '#FFCAD4', fg: '#758BFD', span: 'lg:col-span-7' },
+  { title: 'وكالات الشحن والسيارات', cat: 'لوحات طرقية + واجهات كلادينج + ميرش', year: '2023-2024', bg: '#E9FF70', fg: '#7CB518', span: 'lg:col-span-6' },
+  { title: 'شركات النقل والصناعات الثقيلة', cat: 'ريبراندنج + حملات ميديا باينج', year: '2023', bg: '#0A0A0A', fg: '#CEBB9F', span: 'lg:col-span-6' },
 ]
 
 function WorkTile({ w, i }) {
@@ -29,7 +50,7 @@ function WorkTile({ w, i }) {
     <Reveal delay={(i % 2) * 0.1} className={w.span}>
       <TiltCard max={5} className="h-full">
         <a
-          href={CONTACT.facebook}
+          href={CONTACT.whatsapp}
           target="_blank"
           rel="noreferrer noopener"
           className="group clip-shear-lg relative block h-full overflow-hidden border border-ink-line"
@@ -39,28 +60,18 @@ function WorkTile({ w, i }) {
             className="relative grid aspect-16/11 place-items-center overflow-hidden"
             style={{ background: w.bg }}
           >
-            {w.image ? (
-              <img
-                src={w.image}
-                alt={w.title}
-                className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            ) : (
-              <>
-                <BabbrMark
-                  className="w-[26%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-115 group-hover:rotate-[-6deg]"
-                  color={w.fg}
-                />
-                {/* Repeating brand pattern, revealed on hover */}
-                <div
-                  className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-                  style={{
-                    backgroundImage: `radial-gradient(circle at 2px 2px, ${w.fg}55 2px, transparent 0)`,
-                    backgroundSize: '26px 26px',
-                  }}
-                />
-              </>
-            )}
+            <BabbrMark
+              className="w-[26%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-115 group-hover:rotate-[-6deg]"
+              color={w.fg}
+            />
+            {/* Repeating brand pattern, revealed on hover */}
+            <div
+              className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+              style={{
+                backgroundImage: `radial-gradient(circle at 2px 2px, ${w.fg}55 2px, transparent 0)`,
+                backgroundSize: '26px 26px',
+              }}
+            />
 
             <span
               className="absolute top-5 font-mono text-[10px] tracking-[0.2em] opacity-70"
@@ -100,22 +111,66 @@ export function Work() {
         aria-hidden
       >
         <span className="text-stroke-brand font-display select-none text-[17vw] font-black leading-none tracking-tighter opacity-[0.14]">
-          SELECTED WORK
+          ENTERPRISE CLIENTS
         </span>
       </motion.div>
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <SectionHeading
-          eyebrow="أعمالنا"
-          title="شغل يتكلّم عن روحه"
-          lead="مختارات من مشاريع نفّذناها لعلامات ليبية — من الهوية الكاملة إلى الحملة اللي تشتغل على الأرض."
-          className="mb-14"
-        />
+        <div className="mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="عملاؤنا وسابقة الأعمال"
+            title="ثقة كبرى الشركات والجهات الرسمية"
+            lead="نفخر بخدمة أكثر من +100 عميل وشراكة ناجحة، شملت كبرى شركات المقاولات والطاقة والمنظمات الدولية وسلاسل العلامات التجارية الرائدة."
+          />
+          <div className="shrink-0 flex items-center gap-2 border border-babbr/30 bg-babbr/10 px-4 py-2 text-babbr text-xs font-mono">
+            <ShieldCheck className="size-4" />
+            <span>+100 عميل موثوق</span>
+          </div>
+        </div>
 
-        <div className="grid gap-4 lg:grid-cols-12">
-          {WORK.map((w, i) => (
-            <WorkTile key={w.title} w={w} i={i} />
-          ))}
+        {/* ── Enterprise Clients Marquee Tracks ── */}
+        <div className="mb-16 space-y-3.5 overflow-hidden border-y border-ink-line bg-ink/40 py-6">
+          <Marquee speed={48} repeat={3}>
+            {CLIENTS_ROW_1.map((c, i) => (
+              <div
+                key={i}
+                className="mx-2 flex items-center gap-3.5 border border-ink-line bg-ink-soft/80 px-5 py-3 transition-colors hover:border-babbr/40"
+              >
+                <div className="size-2 bg-babbr" />
+                <div>
+                  <p className="text-sm font-bold text-white leading-tight">{c.name}</p>
+                  <p className="text-[10px] font-mono text-white/40 uppercase mt-0.5">{c.en}</p>
+                </div>
+              </div>
+            ))}
+          </Marquee>
+
+          <Marquee speed={44} reverse repeat={3}>
+            {CLIENTS_ROW_2.map((c, i) => (
+              <div
+                key={i}
+                className="mx-2 flex items-center gap-3.5 border border-ink-line bg-ink-soft/80 px-5 py-3 transition-colors hover:border-babbr/40"
+              >
+                <div className="size-2 bg-[#2EC4B6]" />
+                <div>
+                  <p className="text-sm font-bold text-white leading-tight">{c.name}</p>
+                  <p className="text-[10px] font-mono text-white/40 uppercase mt-0.5">{c.en}</p>
+                </div>
+              </div>
+            ))}
+          </Marquee>
+        </div>
+
+        {/* ── Selected Project Sectors ── */}
+        <div className="mb-8">
+          <p className="font-mono text-xs text-white/40 tracking-wider uppercase mb-6">
+            قطاعات المشاريع المنفذة
+          </p>
+          <div className="grid gap-4 lg:grid-cols-12">
+            {WORK.map((w, i) => (
+              <WorkTile key={w.title} w={w} i={i} />
+            ))}
+          </div>
         </div>
 
         <Reveal delay={0.15} className="mt-12 flex justify-center">
@@ -125,7 +180,7 @@ export function Work() {
             rel="noreferrer noopener"
             className="clip-shear group inline-flex items-center gap-3 border border-ink-line bg-ink-soft px-7 py-4 text-sm font-semibold transition-colors duration-400 hover:border-babbr/50 hover:bg-ink"
           >
-            شوف باقي الأعمال على فيسبوك
+            تابع أحدث أعمالنا وتغطياتنا الميدانية على فيسبوك
             <BabbrMark className="h-3.5 w-auto transition-transform duration-500 group-hover:-translate-x-1.5" color="#FC3B00" />
           </a>
         </Reveal>
@@ -133,3 +188,4 @@ export function Work() {
     </section>
   )
 }
+

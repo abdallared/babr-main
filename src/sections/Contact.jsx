@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { MessageCircle, Phone, Globe, Check } from 'lucide-react'
+import { MessageCircle, Phone, Globe, Check, Send } from 'lucide-react'
 import { Facebook } from '../components/BrandIcons'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
@@ -9,8 +9,8 @@ import { BabbrMark } from '../components/BabbrMark'
 import { CONTACT } from '../lib/brand'
 
 const INTERESTS = [
-  'هوية بصرية', 'سوشيال ميديا', 'موشن وفيديو', 'طباعة وإنتاج',
-  'لوحات خارجية', 'موقع أو متجر', 'حملة إعلانية', 'شي ثاني',
+  'هوية بصرية', 'سوشيال ميديا', 'موشن وتصوير', 'طباعة دولية وفاخرة',
+  'لافتات وبيلبورد', 'أجنحة معارض ومناسبات', 'مواقع ومنظومات', 'هدايا ترويجية', 'شي ثاني',
 ]
 
 const BUDGETS = ['أقل من 2,000 د.ل', '2,000 — 5,000', '5,000 — 15,000', 'أكثر من 15,000', 'مش محدد بعد']
@@ -32,7 +32,7 @@ export function Contact() {
   function submit(e) {
     e.preventDefault()
     const lines = [
-      'سلام عليكم بابر 👋',
+      'سلام عليكم ببر 👋',
       '',
       `الاسم: ${form.name || '—'}`,
       `المشروع / العلامة: ${form.brand || '—'}`,
@@ -64,15 +64,16 @@ export function Contact() {
             <SectionHeading
               eyebrow="تواصل معنا"
               title="عندك مشروع؟ خلّينا نسمعه."
-              lead="ابعتلنا تفاصيل مشروعك ونرجّعلك بعرض سعر وجدول زمني. أو كلّمنا على واتساب مباشرة إذا تحب أسرع."
+              lead="ابعتلنا تفاصيل مشروعك ونرجّعلك بعرض سعر وجدول زمني. أو كلّمنا على واتساب وتليجرام مباشرة إذا تحب أسرع."
             />
 
             <Reveal delay={0.12}>
               <div className="mt-9 flex flex-col gap-3">
                 {[
                   { icon: MessageCircle, label: 'واتساب', value: CONTACT.phone, href: CONTACT.whatsapp, primary: true },
-                  { icon: Phone, label: 'اتصال', value: CONTACT.phone, href: CONTACT.phoneHref },
-                  { icon: Facebook, label: 'فيسبوك', value: 'BABBR Creatives', href: CONTACT.facebook },
+                  { icon: Send, label: 'تليجرام', value: CONTACT.phone, href: CONTACT.telegram },
+                  { icon: Phone, label: 'اتصال هاتف', value: CONTACT.phone, href: CONTACT.phoneHref },
+                  { icon: Facebook, label: 'فيسبوك', value: 'Babbrly', href: CONTACT.facebook },
                   { icon: Globe, label: 'الموقع', value: CONTACT.site, href: CONTACT.siteHref },
                 ].map((c) => {
                   const Icon = c.icon

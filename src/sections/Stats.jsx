@@ -9,10 +9,10 @@ import { BabbrMark } from '../components/BabbrMark'
  * client counts are placeholders — swap them for your actual totals.
  */
 const STATS = [
-  { to: 3.7, suffix: ' ألف', label: 'متابع على فيسبوك', note: 'وقاعدين نكبروا', real: true },
-  { to: 5.5, suffix: ' ألف', label: 'مشاهدة لأقوى ريل', note: 'محتوى يوصل', real: true },
-  { to: 120, suffix: '+', label: 'مشروع مسلّم', note: 'رقم مبدئي — للتعديل' },
-  { to: 40, suffix: '+', label: 'علامة تجارية', note: 'رقم مبدئي — للتعديل' },
+  { to: 100, suffix: '+', label: 'عميل تم خدمتهم', note: 'كبرى الشركات والجهات الرسمية', real: true },
+  { to: 3.7, suffix: ' ألف', label: 'متابع على فيسبوك', note: 'مجتمع متفاعل ومتنامي', real: true },
+  { to: 5.5, suffix: ' ألف', label: 'مشاهدة لأقوى ريل', note: 'محتوى إعلاني يصل ويؤثر', real: true },
+  { to: 2022, suffix: '', label: 'سنة التأسيس والانطلاق', note: 'مسيرة متواصلة من التميز', real: true },
 ]
 
 const WORDS = ['نفكّر', 'نصمّم', 'نحرّك', 'نطبع', 'ننفّذ', 'نكبّر']

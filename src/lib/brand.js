@@ -31,13 +31,21 @@ export const COLORWAYS = [
 ]
 
 export const CONTACT = {
-  phone: '+218 91 319 2992',
-  phoneHref: 'tel:+218913192992',
-  whatsapp: 'https://wa.me/218913192992',
+  phone: '+218 94 319 2992',
+  phoneHref: 'tel:+218943192992',
+  whatsapp: 'https://wa.me/218943192992',
+  telegram: 'https://t.me/+218943192992',
+  telegramHandle: '+218 94 31 92 99 2',
   site: 'babar.ly',
   siteHref: 'https://babar.ly',
-  facebook: 'https://www.facebook.com/babbr.ly',
+  facebook: 'https://www.facebook.com/Babbrly/',
+  facebookHandle: 'Babbrly',
+  instagram: 'https://instagram.com/bbr5522',
+  handle: '@bbr5522',
   email: 'hello@babar.ly',
-  city: 'ليبيا',
-  cityEn: 'Libya',
+  city: 'طرابلس، ليبيا',
+  cityEn: 'Tripoli, Libya',
+  established: '5 مايو 2022',
+  establishedYear: '2022',
 }
+

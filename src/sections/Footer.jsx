@@ -1,4 +1,4 @@
-import { MessageCircle, Phone, ArrowUp } from 'lucide-react'
+import { MessageCircle, Phone, ArrowUp, Send } from 'lucide-react'
 import { Facebook } from '../components/BrandIcons'
 import { BabbrMark } from '../components/BabbrMark'
 import { Marquee } from '../components/Marquee'
@@ -8,18 +8,20 @@ const COLS = [
   {
     title: 'خدماتنا',
     links: [
-      { label: 'الهوية البصرية', href: '#services' },
-      { label: 'موشن وفيديو', href: '#services' },
-      { label: 'سوشيال ميديا', href: '#services' },
-      { label: 'طباعة وإنتاج', href: '#services' },
-      { label: 'لوحات خارجية', href: '#services' },
+      { label: 'الهوية وتصميم الجرافيك', href: '#services' },
+      { label: 'الطباعة والتوريد الدولي', href: '#services' },
+      { label: 'اللافتات وبيلبورد طرابلس', href: '#services' },
+      { label: 'سوشيال ميديا وتصوير', href: '#services' },
+      { label: 'أجنحة المعارض والفعاليات', href: '#services' },
+      { label: 'المواقع والمنظومات الإدارية', href: '#services' },
     ],
   },
   {
     title: 'الشركة',
     links: [
-      { label: 'من نحن', href: '#about' },
-      { label: 'أعمالنا', href: '#work' },
+      { label: 'من نحن والرؤية', href: '#about' },
+      { label: 'سابقة الأعمال والعملاء', href: '#work' },
+      { label: 'شركاء النجاح', href: '#partners' },
       { label: 'نظام الهوية', href: '#identity' },
       { label: 'كيف نعمل', href: '#process' },
       { label: 'تواصل معنا', href: '#contact' },
@@ -56,19 +58,19 @@ export function Footer() {
                   <span className="ms-1.5 align-super font-mono text-[8px] text-white/40">™</span>
                 </p>
                 <p className="font-display text-[9px] font-medium tracking-[0.34em] text-white/40 uppercase">
-                  Creatives
+                  Marketing & Advertising
                 </p>
               </div>
             </div>
 
             <p className="mb-7 max-w-sm text-sm leading-relaxed text-white/45">
-              وكالة دعاية وإعلان ليبية. نبني هويات، نصنع محتوى، وننفّذ على الأرض —
-              من الفكرة لآخر ملصق.
+              شركة ليبية رائدة في الدعاية والإعلان، التسويق الشامل، الطباعة المحلية والدولية، وحلول البرمجة. تأسست في 5 مايو 2022.
             </p>
 
             <div className="flex flex-wrap gap-2.5">
               {[
                 { icon: MessageCircle, href: CONTACT.whatsapp, label: 'واتساب' },
+                { icon: Send, href: CONTACT.telegram, label: 'تليجرام' },
                 { icon: Facebook, href: CONTACT.facebook, label: 'فيسبوك' },
                 { icon: Phone, href: CONTACT.phoneHref, label: 'اتصال' },
               ].map((s) => {

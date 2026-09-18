@@ -5,6 +5,7 @@ import { Services } from './sections/Services'
 import { Stats } from './sections/Stats'
 import { Identity } from './sections/Identity'
 import { Work } from './sections/Work'
+import { Partners } from './sections/Partners'
 import { Process } from './sections/Process'
 import { About } from './sections/About'
 import { Faq } from './sections/Faq'
@@ -24,6 +25,7 @@ export default function App() {
         <Stats />
         <Identity />
         <Work />
+        <Partners />
         <Process />
         <About />
         <Faq />
