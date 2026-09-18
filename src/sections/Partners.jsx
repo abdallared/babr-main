@@ -1,37 +1,42 @@
 import { Handshake } from 'lucide-react'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
-import { SpotlightCard } from '../components/Interactive'
+import sarayaLogo from '../assets/partners/saraya.png'
+import medadLogo from '../assets/partners/medad.png'
+import safaLogo from '../assets/partners/safa.png'
+import trodatLogo from '../assets/partners/trodat.png'
+import everestLogo from '../assets/partners/everest.png'
+import raedLogo from '../assets/partners/raed.png'
 
 const PARTNERS = [
   {
     name: 'شركة السرايا',
-    logo: '/partners/saraya.png',
+    logo: sarayaLogo,
     accent: '#FC3B00',
   },
   {
     name: 'مطبعة المِداد',
-    logo: '/partners/medad.png',
+    logo: medadLogo,
     accent: '#2EC4B6',
   },
   {
     name: 'شركة الصفاء',
-    logo: '/partners/safa.png',
+    logo: safaLogo,
     accent: '#E9FF70',
   },
   {
     name: 'Trodat Trotec Group',
-    logo: '/partners/trodat.png',
+    logo: trodatLogo,
     accent: '#FC3B00',
   },
   {
     name: 'إفرست للطباعة والتغليف',
-    logo: '/partners/everest.png',
+    logo: everestLogo,
     accent: '#758BFD',
   },
   {
     name: 'مجموعة الرائد',
-    logo: '/partners/raed.png',
+    logo: raedLogo,
     accent: '#CEBB9F',
   },
 ]
