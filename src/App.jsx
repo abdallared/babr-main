@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { CursorGlow, ScrollProgress } from './components/Interactive'
 import { Footer } from './sections/Footer'
@@ -10,11 +10,28 @@ const AboutPage = lazy(() => import('./pages/AboutPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '')
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+        return
+      }
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname, hash])
+  return null
+}
+
 export default function App() {
   const { theme, toggle, isDark } = useTheme()
 
   return (
     <div className="grain relative">
+      <ScrollToTop />
       <ScrollProgress />
       <CursorGlow isDark={isDark} />
       <Nav theme={theme} onToggleTheme={toggle} />

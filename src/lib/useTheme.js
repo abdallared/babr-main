@@ -10,8 +10,8 @@ const STORAGE_KEY = 'babbr-theme'
  */
 export function useTheme() {
   const [theme, setThemeState] = useState(() => {
-    if (typeof window === 'undefined') return 'dark'
-    return localStorage.getItem(STORAGE_KEY) || 'dark'
+    if (typeof window === 'undefined') return 'light'
+    return localStorage.getItem(STORAGE_KEY) || 'light'
   })
 
   useEffect(() => {
