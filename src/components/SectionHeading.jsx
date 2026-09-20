@@ -34,7 +34,7 @@ export function SectionHeading({ eyebrow, title, lead, align = 'start', classNam
         <Reveal delay={0.12}>
           <p
             className={cn(
-              'text-pretty text-base leading-relaxed text-white/55 sm:text-lg',
+              'text-pretty text-base leading-relaxed text-foreground-muted sm:text-lg',
               centered ? 'mx-auto max-w-2xl' : 'max-w-2xl',
             )}
           >

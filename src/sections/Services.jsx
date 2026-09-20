@@ -212,12 +212,12 @@ function ServiceCard({ s, i, onSelect }) {
                   >
                     <Icon className="size-5" />
                   </span>
-                  <span className="font-mono text-xs font-bold tracking-wider text-white/30">
+                  <span className="font-mono text-xs font-bold tracking-wider text-foreground/30">
                     {num}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 border border-ink-line bg-white/[0.02] px-2.5 py-1 text-[11px] font-mono text-white/40 transition-all duration-300 group-hover:border-babbr/40 group-hover:text-babbr group-hover:bg-babbr/10">
+                <div className="flex items-center gap-1.5 border border-ink-line bg-foreground/[0.02] px-2.5 py-1 text-[11px] font-mono text-foreground-muted transition-all duration-300 group-hover:border-babbr/40 group-hover:text-babbr group-hover:bg-babbr/10">
                   <span>تفاصيل</span>
                   <ArrowUpLeft className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-[-2px]" />
                 </div>
@@ -232,12 +232,12 @@ function ServiceCard({ s, i, onSelect }) {
               </p>
 
               {/* Title */}
-              <h3 className="mb-2.5 text-lg sm:text-xl font-bold leading-snug tracking-tight text-white transition-colors">
+              <h3 className="mb-2.5 text-lg sm:text-xl font-bold leading-snug tracking-tight text-foreground transition-colors">
                 {s.title}
               </h3>
 
               {/* Description with consistent height */}
-              <p className="text-sm leading-relaxed text-white/50 text-pretty min-h-[4rem]">
+              <p className="text-sm leading-relaxed text-foreground-muted text-pretty min-h-[4rem]">
                 {s.body}
               </p>
             </div>
@@ -248,7 +248,7 @@ function ServiceCard({ s, i, onSelect }) {
                 {s.tags.slice(0, 3).map((t) => (
                   <span
                     key={t}
-                    className="border border-ink-line bg-white/[0.02] px-2 py-0.5 text-[10px] text-white/40"
+                    className="border border-ink-line bg-foreground/[0.02] px-2 py-0.5 text-[10px] text-foreground-muted"
                   >
                     {t}
                   </span>
@@ -337,7 +337,7 @@ function ServiceModal({ service, onClose }) {
               >
                 {service.en}
               </p>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-foreground">
                 {service.title}
               </h2>
             </div>
@@ -346,7 +346,7 @@ function ServiceModal({ service, onClose }) {
           <button
             onClick={onClose}
             aria-label="إغلاق"
-            className="grid size-10 place-items-center border border-ink-line bg-ink text-white/50 transition-colors hover:border-babbr hover:text-white"
+            className="grid size-10 place-items-center border border-ink-line bg-ink text-foreground-muted transition-colors hover:border-babbr hover:text-foreground"
           >
             <X className="size-5" />
           </button>
@@ -356,8 +356,8 @@ function ServiceModal({ service, onClose }) {
         <div className="py-6 space-y-6">
           {/* Detailed explanation */}
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-white/40 mb-2">عن الخدمة</h4>
-            <p className="text-base leading-relaxed text-white/80">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-foreground-muted mb-2">عن الخدمة</h4>
+            <p className="text-base leading-relaxed text-foreground/80">
               {service.details}
             </p>
           </div>
@@ -366,8 +366,8 @@ function ServiceModal({ service, onClose }) {
           {service.scope && (
             <div className="flex items-center gap-3 border border-ink-line bg-white/[0.02] p-4">
               <Globe className="size-5 shrink-0 text-babbr" />
-              <div className="text-xs sm:text-sm text-white/75">
-                <span className="font-bold text-white ml-1">نطاق الخدمة والتنفيذ:</span>
+              <div className="text-xs sm:text-sm text-foreground/75">
+                <span className="font-bold text-foreground ml-1">نطاق الخدمة والتنفيذ:</span>
                 {service.scope}
               </div>
             </div>
@@ -386,7 +386,7 @@ function ServiceModal({ service, onClose }) {
                     className="size-4 shrink-0 mt-0.5" 
                     style={{ color: service.accent }} 
                   />
-                  <span className="text-sm text-white/80">{feat}</span>
+                  <span className="text-sm text-foreground/80">{feat}</span>
                 </div>
               ))}
             </div>
@@ -397,7 +397,7 @@ function ServiceModal({ service, onClose }) {
             {service.tags.map((t) => (
               <span
                 key={t}
-                className="border border-ink-line bg-white/[0.03] px-3 py-1 text-xs text-white/60"
+                className="border border-ink-line bg-foreground/[0.03] px-3 py-1 text-xs text-foreground-muted"
               >
                 #{t}
               </span>
@@ -419,7 +419,7 @@ function ServiceModal({ service, onClose }) {
 
           <button
             onClick={onClose}
-            className="w-full sm:w-auto text-sm text-white/50 hover:text-white px-5 py-3 transition-colors text-center"
+            className="w-full sm:w-auto text-sm text-foreground-muted hover:text-foreground px-5 py-3 transition-colors text-center"
           >
             إغلاق النافذة
           </button>

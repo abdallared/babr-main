@@ -41,7 +41,7 @@ function Item({ f, open, onToggle }) {
       >
         <span
           className={`text-base font-semibold tracking-tight transition-colors duration-300 sm:text-lg ${
-            open ? 'text-babbr' : 'text-white/85 group-hover:text-white'
+            open ? 'text-babbr' : 'text-foreground/85 group-hover:text-foreground'
           }`}
         >
           {f.q}
@@ -49,7 +49,7 @@ function Item({ f, open, onToggle }) {
         {/* The box stays square; only the glyph inside rotates into a cross. */}
         <span
           className={`grid size-9 shrink-0 place-items-center border transition-colors duration-300 ${
-            open ? 'border-babbr text-babbr' : 'border-ink-line text-white/40'
+            open ? 'border-babbr text-babbr' : 'border-ink-line text-foreground/40'
           }`}
         >
           <motion.span
@@ -71,7 +71,7 @@ function Item({ f, open, onToggle }) {
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="max-w-2xl pb-7 text-pretty text-sm leading-relaxed text-white/50 sm:text-[15px]">
+            <p className="max-w-2xl pb-7 text-pretty text-sm leading-relaxed text-foreground-muted sm:text-[15px]">
               {f.a}
             </p>
           </motion.div>

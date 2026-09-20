@@ -31,41 +31,41 @@ const HEADLINE = 'نجعل الخيال'.split(' ')
 export function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-
-  // Foreground drifts down slower than the page; the ghost wordmark drifts up.
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '32%'])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
-  const ghostY = useTransform(scrollYProgress, [0, 1], ['0%', '-22%'])
+  const ghostY = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
 
   return (
     <section id="top" ref={ref} className="relative min-h-[100svh] overflow-hidden">
       {/* ── Background layers ── */}
-      <div className="absolute inset-0" aria-hidden>
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
         {/* Warm core light */}
-        <div className="absolute left-1/2 top-[38%] h-[900px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(252,59,0,0.22),transparent_62%)]" />
+        <div className="pointer-events-none absolute left-1/2 top-[38%] h-[900px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(252,59,0,0.20),transparent_62%)]" />
 
-        {/* Drifting brand-colourway blobs */}
+        {/* Drifting brand-colourway blobs - optimized without expensive blur filters */}
         {BLOBS.map((b, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute rounded-full mix-blend-screen"
+            className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 will-change-transform"
             style={{
               left: b.x,
               top: b.y,
               width: b.s,
               height: b.s,
-              translate: '-50% -50%',
-              background: `radial-gradient(circle, ${b.c}38, transparent 68%)`,
-              filter: 'blur(60px)',
             }}
-            animate={{ x: [0, 34, -22, 0], y: [0, -28, 20, 0], scale: [1, 1.12, 0.95, 1] }}
-            transition={{ duration: 22, delay: b.d, repeat: Infinity, ease: 'easeInOut' }}
-          />
+          >
+            <motion.div
+              className="h-full w-full rounded-full mix-blend-screen will-change-transform"
+              style={{
+                background: `radial-gradient(circle, ${b.c}38 0%, ${b.c}14 42%, transparent 70%)`,
+              }}
+              animate={{ x: [0, 28, -18, 0], y: [0, -22, 16, 0], scale: [1, 1.08, 0.96, 1] }}
+              transition={{ duration: 24, delay: b.d, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </div>
         ))}
 
         {/* Technical grid, faded to an ellipse */}
         <div
-          className="absolute inset-0 opacity-[0.055]"
+          className="pointer-events-none absolute inset-0 opacity-[0.055]"
           style={{
             backgroundImage:
               'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
@@ -76,20 +76,20 @@ export function Hero() {
         />
 
         {/* Giant ghost wordmark */}
-        <motion.div style={{ y: ghostY }} className="absolute inset-x-0 bottom-[4%] flex justify-center">
+        <motion.div
+          style={{ y: ghostY }}
+          className="pointer-events-none absolute inset-x-0 bottom-[4%] flex justify-center will-change-transform"
+        >
           <span className="text-stroke font-display select-none text-[24vw] font-black leading-none tracking-[-0.05em] opacity-40">
             BABBR
           </span>
         </motion.div>
 
-        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-ink to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-ink to-transparent" />
       </div>
 
       {/* ── Foreground ── */}
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-5 pb-32 pt-28 text-center sm:px-8"
-      >
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-5 pb-32 pt-28 text-center sm:px-8">
         <motion.a
           href={CONTACT.facebook}
           target="_blank"
@@ -97,14 +97,14 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="clip-shear group mb-10 inline-flex items-center gap-2.5 border border-ink-line bg-white/[0.035] px-4 py-2 backdrop-blur-sm transition-colors hover:border-babbr/50"
+          className="clip-shear group mb-10 inline-flex items-center gap-2.5 border border-ink-line bg-foreground/[0.035] px-4 py-2 backdrop-blur-sm transition-colors hover:border-babbr/50"
         >
           <Sparkles className="size-3.5 shrink-0 text-babbr" />
-          <span className="font-display text-[10.5px] font-medium tracking-[0.2em] text-white/70 uppercase">
+          <span className="font-display text-[10.5px] font-medium tracking-[0.2em] text-foreground/70 uppercase">
             Future of Advertising
           </span>
           <span className="h-3.5 w-px bg-ink-line" />
-          <span className="text-[11px] text-white/45 transition-colors group-hover:text-white/75">
+          <span className="text-[11px] text-foreground-muted transition-colors group-hover:text-foreground/75">
             ٣.٧ ألف متابع
           </span>
         </motion.a>
@@ -132,7 +132,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 1.35, ease: [0.16, 1, 0.3, 1] }}
             className="mt-4 sm:mt-6 block text-[13vw] text-babbr sm:text-6xl lg:text-[5.2rem]"
           >
-            على أرض الواقع<span className="text-white">.</span>
+            على أرض الواقع<span className="text-foreground">.</span>
           </motion.span>
         </h1>
 
@@ -140,7 +140,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.6 }}
-          className="mt-8 max-w-2xl space-y-3.5 text-pretty text-base leading-relaxed text-white/65 sm:text-lg"
+          className="mt-8 max-w-2xl space-y-3.5 text-pretty text-base leading-relaxed text-foreground-muted sm:text-lg"
         >
           <p>
             شركة إبداعية ليبية متكاملة، نحول الأفكار من الخيال إلى الواقع في مختلف مجالات الدعاية والإبداع.
@@ -148,7 +148,7 @@ export function Hero() {
           <p>
             من الفكرة والهوية، إلى المحتوى والإنتاج والتنفيذ، نقدم حلولًا إبداعية متكاملة تُصنع بجودة وتُنفذ باحتراف.
           </p>
-          <p className="font-semibold text-white/90">
+          <p className="font-semibold text-foreground/90">
             من الخيال إلى الواقع<span className="text-babbr">.</span>
           </p>
         </motion.div>
@@ -168,7 +168,7 @@ export function Hero() {
               خلّينا نبدأ
               <BabbrMark className="h-3.5 w-auto transition-transform duration-500 group-hover:-translate-x-1" />
             </span>
-            <span className="absolute inset-0 origin-bottom scale-y-0 bg-ink transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100" />
+            <span className="absolute inset-0 origin-bottom scale-y-0 bg-[#0A0A0A] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100" />
           </MagneticButton>
 
           <MagneticButton
@@ -176,7 +176,7 @@ export function Hero() {
             href={CONTACT.whatsapp}
             target="_blank"
             rel="noreferrer noopener"
-            className="clip-shear flex w-full items-center justify-center gap-2 border border-ink-line bg-white/[0.03] px-8 py-4 text-base font-semibold text-white/85 backdrop-blur-sm transition-colors duration-300 hover:border-white/35 hover:bg-white/[0.07] sm:w-auto"
+            className="clip-shear flex w-full items-center justify-center gap-2 border border-ink-line bg-foreground/[0.03] px-8 py-4 text-base font-semibold text-foreground/85 backdrop-blur-sm transition-colors duration-300 hover:border-foreground/35 hover:bg-foreground/[0.07] sm:w-auto"
           >
             <MessageCircle className="size-4" />
             واتساب مباشر
@@ -200,13 +200,13 @@ export function Hero() {
             />
           ))}
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* ── Bottom ticker ── */}
       <div className="absolute inset-x-0 bottom-0 z-20 border-y border-ink-line bg-ink/70 backdrop-blur-md">
         <Marquee speed={48} itemClassName="px-7 py-3.5" repeat={2}>
           {TICKER.map((t) => (
-            <span key={t} className="flex items-center gap-7 text-sm whitespace-nowrap text-white/45">
+            <span key={t} className="flex items-center gap-7 text-sm whitespace-nowrap text-foreground-muted">
               {t}
               <BabbrMark className="h-2.5 w-auto opacity-60" color="#FC3B00" />
             </span>
@@ -225,7 +225,7 @@ export function Hero() {
         <motion.span
           animate={{ y: [0, 9, 0] }}
           transition={{ duration: 1.9, repeat: Infinity, ease: 'easeInOut' }}
-          className="grid size-11 place-items-center rounded-full border border-ink-line bg-ink/60 text-white/45 backdrop-blur-sm"
+          className="grid size-11 place-items-center rounded-full border border-ink-line bg-ink/60 text-foreground-muted backdrop-blur-sm"
         >
           <ArrowDown className="size-4" />
         </motion.span>

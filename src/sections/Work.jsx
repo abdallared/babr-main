@@ -124,9 +124,9 @@ function WorkTile({ w, i }) {
           <div className="flex items-center justify-between gap-4 bg-ink-soft p-6 transition-colors duration-500 group-hover:bg-ink">
             <div className="min-w-0">
               <h3 className="truncate text-lg font-bold tracking-tight">{w.title}</h3>
-              <p className="mt-1 truncate text-sm text-white/45">{w.cat}</p>
+              <p className="mt-1 truncate text-sm text-foreground-muted">{w.cat}</p>
             </div>
-            <span className="grid size-10 shrink-0 place-items-center border border-ink-line text-white/30 transition-all duration-500 group-hover:border-babbr group-hover:bg-babbr group-hover:text-white">
+            <span className="grid size-10 shrink-0 place-items-center border border-ink-line text-foreground/30 transition-all duration-500 group-hover:border-babbr group-hover:bg-babbr group-hover:text-white">
               <ArrowUpLeft className="size-4" />
             </span>
           </div>
@@ -206,7 +206,7 @@ export function Work() {
 
         {/* ── Selected Project Sectors ── */}
         <div className="mb-8">
-          <p className="font-mono text-xs text-white/40 tracking-wider uppercase mb-6">
+          <p className="font-mono text-xs text-foreground-muted tracking-wider uppercase mb-6">
             قطاعات المشاريع المنفذة
           </p>
           <div className="grid gap-4 lg:grid-cols-12">

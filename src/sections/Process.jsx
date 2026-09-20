@@ -97,13 +97,13 @@ export function Process() {
                         </div>
                       </div>
 
-                      <p className="text-pretty text-sm leading-relaxed text-white/50">{s.body}</p>
+                      <p className="text-pretty text-sm leading-relaxed text-foreground-muted">{s.body}</p>
 
                       <div className={`mt-5 flex flex-wrap gap-2 ${flip ? '' : 'lg:justify-end'}`}>
                         {s.out.map((o) => (
                           <span
                             key={o}
-                            className="border border-ink-line bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/45"
+                            className="border border-ink-line bg-foreground/[0.03] px-2.5 py-1 text-[11px] text-foreground-muted"
                           >
                             {o}
                           </span>

@@ -108,16 +108,16 @@ export function Identity() {
               </div>
 
               <div className="clip-shear border border-ink-line bg-ink-soft p-6">
-                <p dir="ltr" className="mb-1.5 text-start font-mono text-[10px] tracking-[0.22em] text-white/35 uppercase">
+                <p dir="ltr" className="mb-1.5 text-start font-mono text-[10px] tracking-[0.22em] text-foreground-muted uppercase">
                   Colourway {String(active + 1).padStart(2, '0')} / 12
                 </p>
                 <h3 className="mb-2 text-2xl font-bold tracking-tight">
                   {cw.nameAr}
-                  <span className="font-display ms-2.5 text-base font-medium text-white/35">
+                  <span className="font-display ms-2.5 text-base font-medium text-foreground-muted">
                     {cw.name}
                   </span>
                 </h3>
-                <p className="text-sm leading-relaxed text-white/50">
+                <p className="text-sm leading-relaxed text-foreground-muted">
                   {auto
                     ? 'التنويعات تتبدّل تلقائياً — اضغط أي مربع تحت باش توقف وتتحكم بنفسك.'
                     : 'اختر أي تنويعة من الشبكة باش تشوف الشعار فيها.'}
@@ -130,7 +130,7 @@ export function Identity() {
                         className="size-7 shrink-0 border border-white/10"
                         style={{ background: hex }}
                       />
-                      <span dir="ltr" className="font-mono text-[11px] text-white/55">
+                      <span dir="ltr" className="font-mono text-[11px] text-foreground-muted">
                         {hex}
                       </span>
                     </div>

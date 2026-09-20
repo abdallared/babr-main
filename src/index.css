@@ -17,6 +17,13 @@
   --color-grass:        #7CB518;
   --color-stone:        #A8A29B;
 
+  /* ── Semantic theme tokens (dark defaults) ── */
+  --color-surface:          #0A0A0A;
+  --color-surface-soft:     #141414;
+  --color-foreground:       #FFFFFF;
+  --color-foreground-muted: rgba(255, 255, 255, 0.50);
+  --color-border:           #232323;
+
   --font-display: "Poppins", "IBM Plex Sans Arabic", system-ui, sans-serif;
   --font-sans:    "IBM Plex Sans Arabic", "Poppins", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
@@ -30,22 +37,20 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    /* Clipped at the root as well as on body: the fixed decorative layers
-       (grain, cursor glow) would otherwise widen the document in RTL. */
     overflow-x: clip;
   }
 
   body {
     background: var(--color-ink);
-    color: #fff;
+    color: var(--color-foreground);
     font-family: var(--font-sans);
     overflow-x: clip;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   ::selection { background: var(--color-babbr); color: #fff; }
 
-  /* Latin display type should never render in the Arabic face */
   .font-display { font-family: var(--font-display); }
 
   ::-webkit-scrollbar { width: 10px; }
@@ -55,6 +60,33 @@
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover { background: var(--color-babbr); }
+
+  /* ═══════════════════════════════════════════════
+     LIGHT MODE — triggered by data-theme="light"
+     ═══════════════════════════════════════════════ */
+  [data-theme="light"] {
+    --color-ink:          #FFFFFF;
+    --color-ink-soft:     #F5F5F5;
+    --color-ink-line:     #E0E0E0;
+    --color-surface:      #FFFFFF;
+    --color-surface-soft: #F5F5F5;
+    --color-foreground:   #0A0A0A;
+    --color-foreground-muted: rgba(10, 10, 10, 0.55);
+    --color-border:       #E0E0E0;
+  }
+
+  [data-theme="light"] body {
+    background: #FFFFFF;
+    color: #0A0A0A;
+  }
+
+  [data-theme="light"] ::selection {
+    background: var(--color-babbr);
+    color: #fff;
+  }
+
+  [data-theme="light"] ::-webkit-scrollbar-track { background: #F5F5F5; }
+  [data-theme="light"] ::-webkit-scrollbar-thumb { background: #D4D4D4; }
 }
 
 @layer utilities {
@@ -62,12 +94,18 @@
   .grain::after {
     content: "";
     position: fixed;
-    inset: -50%;
+    inset: 0;
     z-index: 9999;
     pointer-events: none;
     opacity: 0.035;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    animation: grain-shift 0.6s steps(2) infinite;
+    transform: translateZ(0);
+    will-change: transform;
+    animation: grain-shift 0.8s steps(2) infinite;
+  }
+
+  [data-theme="light"] .grain::after {
+    opacity: 0.018;
   }
 
   @keyframes grain-shift {
@@ -82,9 +120,18 @@
     background-size: 22px 22px;
   }
 
+  [data-theme="light"] .noise-panel {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0);
+  }
+
   .text-stroke {
     -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
     color: transparent;
+  }
+
+  [data-theme="light"] .text-stroke {
+    -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.15);
   }
 
   .text-stroke-brand {

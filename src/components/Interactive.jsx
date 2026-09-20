@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useInView, animate } from 'motion/react'
+import { motion, useMotionValue, useSpring, useInView, animate, useScroll } from 'motion/react'
 import { cn } from '../lib/utils'
 
 /* ─────────────────────────  Magnetic button  ───────────────────────── */
@@ -141,7 +141,7 @@ export function Counter({ to, suffix = '', prefix = '', duration = 1.9, classNam
 /* ─────────────────────────  Cursor glow  ───────────────────────── */
 
 /** A soft brand-coloured light that follows the pointer. Pointer devices only. */
-export function CursorGlow() {
+export function CursorGlow({ isDark = true }) {
   const x = useSpring(useMotionValue(-500), { stiffness: 120, damping: 22, mass: 0.6 })
   const y = useSpring(useMotionValue(-500), { stiffness: 120, damping: 22, mass: 0.6 })
   const [enabled, setEnabled] = useState(false)
@@ -160,10 +160,15 @@ export function CursorGlow() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed z-[60] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-45 mix-blend-screen"
+      className={cn(
+        'pointer-events-none fixed z-[60] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full',
+        isDark ? 'opacity-45 mix-blend-screen' : 'opacity-20 mix-blend-multiply',
+      )}
       style={{
         x, y,
-        background: 'radial-gradient(circle, rgba(252,59,0,0.20), rgba(252,59,0,0.05) 42%, transparent 70%)',
+        background: isDark
+          ? 'radial-gradient(circle, rgba(252,59,0,0.20), rgba(252,59,0,0.05) 42%, transparent 70%)'
+          : 'radial-gradient(circle, rgba(252,59,0,0.12), rgba(252,59,0,0.03) 42%, transparent 70%)',
       }}
     />
   )
@@ -172,22 +177,13 @@ export function CursorGlow() {
 /* ─────────────────────────  Scroll progress  ───────────────────────── */
 
 export function ScrollProgress() {
-  const [pct, setPct] = useState(0)
-  useEffect(() => {
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      setPct(max > 0 ? (window.scrollY / max) * 100 : 0)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const { scrollYProgress } = useScroll()
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[70] h-[3px] bg-transparent" aria-hidden>
-      <div
-        className="h-full bg-gradient-to-r from-babbr via-babbr-glow to-lime transition-[width] duration-75 ease-out"
-        style={{ width: `${pct}%` }}
+    <div className="fixed inset-x-0 top-0 z-[70] h-[3px] bg-transparent pointer-events-none" aria-hidden>
+      <motion.div
+        className="h-full bg-gradient-to-r from-babbr via-babbr-glow to-lime origin-left"
+        style={{ scaleX: scrollYProgress }}
       />
     </div>
   )

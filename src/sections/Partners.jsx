@@ -51,7 +51,7 @@ export function Partners() {
             title="شراكات متينة تصنع الفارق"
             lead="نتعاون مع رواد الطباعة والتجهيزات والتغليف محلياً ودولياً لنضمن لعملائنا أعلى مستويات الدقة والالتزام."
           />
-          <div className="shrink-0 flex items-center gap-2 border border-ink-line bg-ink px-4 py-2 text-white/50 text-xs font-mono">
+          <div className="shrink-0 flex items-center gap-2 border border-ink-line bg-ink px-4 py-2 text-foreground-muted text-xs font-mono">
             <Handshake className="size-4 text-babbr" />
             <span>شركاء استراتيجيون معتمدون</span>
           </div>

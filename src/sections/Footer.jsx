@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { MessageCircle, Phone, ArrowUp, Send } from 'lucide-react'
 import { Facebook } from '../components/BrandIcons'
 import { BabbrMark } from '../components/BabbrMark'
@@ -8,23 +9,23 @@ const COLS = [
   {
     title: 'خدماتنا',
     links: [
-      { label: 'الهوية وتصميم الجرافيك', href: '#services' },
-      { label: 'الطباعة والتوريد الدولي', href: '#services' },
-      { label: 'اللافتات وبيلبورد طرابلس', href: '#services' },
-      { label: 'سوشيال ميديا وتصوير', href: '#services' },
-      { label: 'أجنحة المعارض والفعاليات', href: '#services' },
-      { label: 'المواقع والمنظومات الإدارية', href: '#services' },
+      { label: 'الهوية وتصميم الجرافيك', href: '/#services', type: 'hash' },
+      { label: 'الطباعة والتوريد الدولي', href: '/#services', type: 'hash' },
+      { label: 'اللافتات وبيلبورد طرابلس', href: '/#services', type: 'hash' },
+      { label: 'سوشيال ميديا وتصوير', href: '/#services', type: 'hash' },
+      { label: 'أجنحة المعارض والفعاليات', href: '/#services', type: 'hash' },
+      { label: 'المواقع والمنظومات الإدارية', href: '/#services', type: 'hash' },
     ],
   },
   {
     title: 'الشركة',
     links: [
-      { label: 'من نحن والرؤية', href: '#about' },
-      { label: 'سابقة الأعمال والعملاء', href: '#work' },
-      { label: 'شركاء النجاح', href: '#partners' },
-      { label: 'نظام الهوية', href: '#identity' },
-      { label: 'كيف نعمل', href: '#process' },
-      { label: 'تواصل معنا', href: '#contact' },
+      { label: 'من نحن والرؤية', href: '/about', type: 'route' },
+      { label: 'المدونة', href: '/blog', type: 'route' },
+      { label: 'سابقة الأعمال والعملاء', href: '/#work', type: 'hash' },
+      { label: 'شركاء النجاح', href: '/#partners', type: 'hash' },
+      { label: 'نظام الهوية', href: '/#identity', type: 'hash' },
+      { label: 'كيف نعمل', href: '/#process', type: 'hash' },
     ],
   },
 ]
@@ -37,7 +38,7 @@ export function Footer() {
         <Marquee speed={44} itemClassName="px-10">
           {[0, 1, 2, 3].map((i) => (
             <span key={i} className="flex items-center gap-10">
-              <span className="font-display text-6xl font-black tracking-tighter text-white/[0.06] sm:text-8xl">
+              <span className="font-display text-6xl font-black tracking-tighter text-foreground/[0.06] sm:text-8xl">
                 BABBR
               </span>
               <BabbrMark className="h-9 w-auto opacity-[0.12] sm:h-12" color="#FC3B00" />
@@ -55,15 +56,15 @@ export function Footer() {
               <div>
                 <p dir="ltr" className="font-display text-xl font-bold tracking-tight">
                   Babbr
-                  <span className="ms-1.5 align-super font-mono text-[8px] text-white/40">™</span>
+                  <span className="ms-1.5 align-super font-mono text-[8px] text-foreground-muted">™</span>
                 </p>
-                <p className="font-display text-[9px] font-medium tracking-[0.34em] text-white/40 uppercase">
+                <p className="font-display text-[9px] font-medium tracking-[0.34em] text-foreground-muted uppercase">
                   Marketing & Advertising
                 </p>
               </div>
             </div>
 
-            <p className="mb-7 max-w-sm text-sm leading-relaxed text-white/45">
+            <p className="mb-7 max-w-sm text-sm leading-relaxed text-foreground-muted">
               شركة ليبية رائدة في الدعاية والإعلان، التسويق الشامل، الطباعة المحلية والدولية، وحلول البرمجة. تأسست في 5 مايو 2022.
             </p>
 
@@ -82,7 +83,7 @@ export function Footer() {
                     aria-label={s.label}
                     target={s.href.startsWith('http') ? '_blank' : undefined}
                     rel="noreferrer noopener"
-                    className="grid size-11 place-items-center border border-ink-line text-white/50 transition-all duration-400 hover:border-babbr hover:bg-babbr hover:text-white"
+                    className="grid size-11 place-items-center border border-ink-line text-foreground-muted transition-all duration-400 hover:border-babbr hover:bg-babbr hover:text-white"
                   >
                     <Icon className="size-[18px]" />
                   </a>
@@ -100,12 +101,21 @@ export function Footer() {
               <ul className="flex flex-col gap-3">
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="text-sm text-white/45 transition-colors duration-300 hover:text-white"
-                    >
-                      {l.label}
-                    </a>
+                    {l.type === 'route' ? (
+                      <Link
+                        to={l.href}
+                        className="text-sm text-foreground-muted transition-colors duration-300 hover:text-foreground"
+                      >
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={l.href}
+                        className="text-sm text-foreground-muted transition-colors duration-300 hover:text-foreground"
+                      >
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -121,23 +131,23 @@ export function Footer() {
               <a
                 href={CONTACT.phoneHref}
                 dir="ltr"
-                className="block text-end font-semibold text-white/85 transition-colors hover:text-babbr"
+                className="block text-end font-semibold text-foreground/85 transition-colors hover:text-babbr"
               >
                 {CONTACT.phone}
               </a>
               <a
                 href={CONTACT.siteHref}
                 dir="ltr"
-                className="block text-end text-white/45 transition-colors hover:text-white"
+                className="block text-end text-foreground-muted transition-colors hover:text-foreground"
               >
                 {CONTACT.site}
               </a>
-              <p className="text-white/45">{CONTACT.city}</p>
+              <p className="text-foreground-muted">{CONTACT.city}</p>
             </div>
 
             <a
               href="#top"
-              className="clip-shear mt-7 inline-flex items-center gap-2.5 border border-ink-line px-4 py-2.5 text-xs text-white/55 transition-colors duration-400 hover:border-babbr/50 hover:text-white"
+              className="clip-shear mt-7 inline-flex items-center gap-2.5 border border-ink-line px-4 py-2.5 text-xs text-foreground-muted transition-colors duration-400 hover:border-babbr/50 hover:text-foreground"
             >
               <ArrowUp className="size-3.5" />
               رجوع للأعلى
@@ -146,10 +156,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-ink-line pt-7 sm:flex-row">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-foreground/30">
             <span dir="ltr">© {new Date().getFullYear()} Babbr Creatives™</span> — كل الحقوق محفوظة.
           </p>
-          <p className="font-display text-[10px] tracking-[0.24em] text-white/25 uppercase">
+          <p className="font-display text-[10px] tracking-[0.24em] text-foreground/25 uppercase">
             Future of Advertising
           </p>
         </div>

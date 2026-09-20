@@ -25,7 +25,7 @@ export function Stats() {
         <Marquee speed={36} reverse itemClassName="px-8" repeat={4}>
           {WORDS.map((w) => (
             <span key={w} className="flex items-center gap-8 whitespace-nowrap">
-              <span className="text-4xl font-black tracking-tight text-white/[0.08] sm:text-6xl">
+              <span className="text-4xl font-black tracking-tight text-foreground/[0.08] sm:text-6xl">
                 {w}
               </span>
               <BabbrMark className="h-5 w-auto opacity-[0.14] sm:h-7" color="#FC3B00" />
@@ -42,7 +42,7 @@ export function Stats() {
                 <span
                   dir="ltr"
                   className={`absolute top-6 font-mono text-[9px] tracking-[0.2em] uppercase ${
-                    s.real ? 'text-babbr/70' : 'text-white/20'
+                    s.real ? 'text-babbr/70' : 'text-foreground/20'
                   }`}
                   style={{ insetInlineEnd: '1.5rem' }}
                 >
@@ -50,12 +50,12 @@ export function Stats() {
                 </span>
 
                 <div className="font-display mb-3 flex items-baseline gap-1.5 text-5xl font-black tracking-tight lg:text-[3.5rem]">
-                  <Counter to={s.to} className="text-white" />
+                  <Counter to={s.to} className="text-foreground" />
                   <span className="text-2xl text-babbr lg:text-3xl">{s.suffix.trim()}</span>
                 </div>
 
-                <p className="mb-1 text-[15px] font-semibold text-white/85">{s.label}</p>
-                <p className="text-xs text-white/35">{s.note}</p>
+                <p className="mb-1 text-[15px] font-semibold text-foreground/85">{s.label}</p>
+                <p className="text-xs text-foreground-muted">{s.note}</p>
 
                 <span className="absolute bottom-0 inset-x-0 h-px origin-right scale-x-0 bg-babbr transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </div>
